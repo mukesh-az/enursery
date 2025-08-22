@@ -48,6 +48,7 @@
 .productBG{
   background-image: url('/src/assets/bgms.png');
   height: auto;
+  min-height: 100%;
 }
 
 div.col  input {

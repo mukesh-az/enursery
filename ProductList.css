@@ -20,11 +20,34 @@
     justify-content: center;
 }
 
+/********Filter***********/
+.productFilter {
+    
+    /* Adjust width for 3 cards per row with 20px gap */
+    
+    /* Adjust max-width for 3 cards per row with 20px gap */
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: left;
+    position: relative;
+    width: 100%;
+    gap: 20px;
+}
+
+.blackBorder{
+
+    border: 1px solid black;
+
+}
+
 /* Product Card */
 .product-card {
     flex: 0 0 calc(33.33% - 20px);
     /* Adjust width for 3 cards per row with 20px gap */
-    max-width: calc(26.33% - 20px);
+    max-width: calc(31.33% - 19px);
     /* Adjust max-width for 3 cards per row with 20px gap */
     margin-bottom: 20px;
     padding: 20px;
@@ -45,8 +68,9 @@
 }
 
 .product-title {
-    font-weight: bold;
+    font-weight: bolder;
     margin-bottom: 10px;
+    font-size: 1.25rem;
 }
 
 .product-price {
@@ -135,11 +159,12 @@
     /* background-color: yellow; */
 }
 
-.plant_heading {
-    width: 400px;
+.plantCategory {
+    width: 95%;
+    background-color: #4CAF50;
     text-align: center;
-    margin: 20px;
-    border: 1px solid rgb(5, 4, 4);
+    margin: 0px;
+    color: white;
     border-left: none;
     border-right: none;
 }

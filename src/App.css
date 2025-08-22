@@ -53,15 +53,8 @@
   filter: brightness(0.8);
 }
 
-.productsHomeBG{
-    background-image: url('/src/assets/bgms.png');
-  top: 0;
-    position: absolute;
-  left: 0;
-  width: 100%;
-  height: auto;
-  filter: brightness(0.8);
-  background-color: rgb(227, 255, 246);
+div.col  input {
+   margin-right:10px;
 }
 
 .cartButton{

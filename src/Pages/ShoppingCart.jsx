@@ -1,6 +1,5 @@
 
-import { useState, useEffect } from 'react';
-
+import { useState } from 'react';
 import { Link } from "react-router-dom";
 import { removeItem, getCartItems, clearAllCartItems } from '../store/CartSlice'
 import { useSelector, useDispatch } from 'react-redux'
@@ -17,7 +16,6 @@ const ShoppingCart = () => {
   const cartItems = useSelector(getCartItems);
   const dispatch = useDispatch();
 
-  //const totalCartItems = cartItems.reduce((acc, item) => acc + item.itemCount, 0);
   const totalCartValue = cartItems.reduce((acc, item) => acc + item.unitPrice * item.itemCount, 0).toFixed(2);
 
 
@@ -46,12 +44,12 @@ const ShoppingCart = () => {
               <tbody>
 
                 {cartItems.filter(a => a.itemCount > 0).map((plant, i) => (
-                  <tr key={plant.id }>
+                  <tr key={plant.id}>
                     <td className='text-center'>
-                      <img width={"50px"} height={"40px"} src={plant.image} alt={`Id: ${ plant.id } -- ${ plant.title}`} />
+                      <img width={"50px"} height={"40px"} src={plant.image} alt={`Id: ${plant.id} -- ${plant.title}`} />
                     </td>
                     <td>
-                      <Link to={`/products/${plant.id}`}>{plant.title} </Link>
+                      {plant.title}
                     </td>
                     <td className='text-center'>{plant.unitPrice}</td>
                     <td className='text-center'>
@@ -85,21 +83,21 @@ const ShoppingCart = () => {
                       </Button>
                     </Link>
                     {totalCartValue > 0 && (<>
-                               <Button className='cartButton' variant='outline-danger' onClick={() => {
-                      dispatch(clearAllCartItems()).then(() => {
-                        navigate("/");
-                      });
-                    }}   >
-                      Clear Cart <Delete />
-                    </Button>
+                      <Button className='cartButton' variant='outline-danger' onClick={() => {
+                        dispatch(clearAllCartItems()).then(() => {
+                          navigate("/");
+                        });
+                      }}   >
+                        Clear Cart <Delete />
+                      </Button>
 
 
-                    <Button className='cartButton' variant="outline-success" size="xxl"
-                      onClick={() => setModalShow(true)}                    >
-                      Checkout (Comming soon.......)
-                    </Button>
+                      <Button className='cartButton' variant="outline-success" size="xxl"
+                        onClick={() => setModalShow(true)}                    >
+                        Checkout (Comming soon.......)
+                      </Button>
                     </>)}
-         
+
 
 
                     <PendingModal

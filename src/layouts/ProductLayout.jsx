@@ -4,7 +4,7 @@ import '../../ProductList.css'; // Ensure styles are applied
 
 const ProductLayout = () => {
   return (
-    <div className="homeBG">
+    <div className="homeBG productBG">
       <NavMenu />
       <main className="main-content">
         <Outlet />

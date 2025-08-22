@@ -1,13 +1,31 @@
+import Card from 'react-bootstrap/Card';
+import CardImage from '../components/cardImage';
+
 
 const ProductInfo = ({ product }) => {
-  return (
-    <div className="product-info">
-      <h2>{product.title}</h2>
-      <p>{product.description}</p>
-      <p>Price: ${product.unitPrice}</p>
-      <p>Quantity: {product.quantity}</p>
-    </div>
-  );
+    return (
+   
+
+            <Card
+                bg={"light"}
+                key={product.id}
+                style={{ width: '25rem' }}
+            >
+                <Card.Body>
+                    <h4>{product.title}</h4>
+                    <CardImage 
+                     width={"100px"}
+                     height={"100px"}
+                    url={product.image} alt={product.title} />
+                    <Card.Text>
+                        {product.description}
+                    </Card.Text>
+                </Card.Body>
+            </Card>
+
+
+      
+    );
 };
 
 export default ProductInfo;

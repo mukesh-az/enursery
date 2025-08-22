@@ -6,9 +6,21 @@ import productsData from '../data/products.json';
 import CardImage from '../components/cardImage';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { Link } from "react-router-dom";
-
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import ProductInfo from '../components/ProductInfo';
+import AddToCartButton from '../components/AddToCartButton';
 
+
+const groupBy = keys => array =>
+  array.reduce((objectsByKeyValue, obj) => {
+    const value = keys.map(key => obj[key]).join('-');
+    objectsByKeyValue[value] = (objectsByKeyValue[value] || []).concat(obj);
+    return objectsByKeyValue;
+  }, {});
+
+  
 const Products = () => {
 
     
@@ -16,6 +28,7 @@ const Products = () => {
   const [productsByCategory, setProductsByCategory] = useState([]);
   const [checkBoxList, setCheckBoxeList] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [groupedItems , setGroupedItems ] = useState([]);
   
 
     const handleOnChange = (e, type) => {
@@ -43,12 +56,34 @@ const Products = () => {
   useEffect(() => {
     if(categories.length > 0){
     if (categoryFilter.length === 0) {
-      setProductsByCategory(productsData);
+
+      setProductsByCategory(productsData.sort((a, b) => a.category.localeCompare(b.category)));
+
+      const result = Object.values(productsData.reduce((acc, el) => { 
+    acc[el.category] = acc[el.category] || { category: el.category, items: [] };
+    acc[el.category].items.push( el);
+    return acc;
+}, {}))
+
+      setGroupedItems(result);
+     console.log("Grouped Items:", result);
     } else {
+
       const filteredCategory = productsData.filter(
         (member) => categoryFilter.includes(member.category)
       );
       setProductsByCategory(filteredCategory);
+
+
+const result = Object.values(filteredCategory.reduce((acc, el) => { 
+    acc[el.category] = acc[el.category] || { category: el.category, items: [] };
+    acc[el.category].items.push( el);
+    return acc;
+}, {}))
+
+      setGroupedItems(result);
+console.log("Grouped Items:", result);
+
       }
 
     setCheckBoxeList(categories.map((item) => ({
@@ -65,13 +100,12 @@ const Products = () => {
   return (
 
     <>
-    <div class="row mt-3">
-  <div class="col-2"></div>
-  <div class="col-2">
+    <div className="row">
+  <div className="col-2">
     <Card
           bg={"light"}
           key="search"
-          style={{ width: '21rem', marginBottom: '1rem', marginRight: '1rem' }}
+          style={{ width: '20rem'}}
         >
           <Card.Header>Filter Category</Card.Header>
           <Card.Body>
@@ -80,7 +114,7 @@ const Products = () => {
      {checkBoxList.map((opt) => (
 
 
-          <ListGroup.Item key={opt.key} className='mb-2' >
+          <ListGroup.Item key={opt.key} >
             <div className="form-check">
                   <input
                    className="form-check-input"
@@ -104,47 +138,32 @@ const Products = () => {
         </Card>
   
   </div>
-  <div class="col-6">
+  <div className="col-10" >
     
-     <div className="d-flex flex-row" style={{ maxWidth: '100%', justifyContent: 'left', flexWrap: 'wrap'
-      } }>
-      {productsByCategory.map((variant) => (
-        <Card
-          bg={"light"}
-          key={variant.id}
-          style={{ width: '30rem', marginBottom: '1rem', marginRight: '1rem' }}
-        >
-          <Card.Header>{variant.title}</Card.Header>
-          <Card.Body>
-              <CardImage text="img-1" height="auto" />
-            <Card.Text>
+     <div className="product-list" >
+                    {groupedItems.map((section, sectionIndex) => (
+                        <div className="product-grid" key={sectionIndex}>
+                            <h2 className="plant_heading">{section.category}</h2>
+                            <div className="product-list">
+                                {section.items.map((plant, plantIndex) => (
+                                    <div className="product-card" key={plantIndex}>
+                                        <h3 className="product-title">{plant.title}</h3>
+                                        <img className="product-image" src={plant.image} alt={plant.title} />
+                                       
+                                        <p>{plant.description}</p>
+                                        <AddToCartButton product={plant} />
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    ))}
 
-               <Link to={`/products/${variant.id}`}>{variant.description}</Link>
-            </Card.Text>
-          </Card.Body>
-           <Card.Header>
-
-        
-
-           </Card.Header>
-        </Card>
-      ))}
       </div>
 
   </div>
-  <div class="col-2"></div>
 
 </div>
-    <div>
-
-
-      <h1>Products</h1>
-      <div className="product-list">
-        {productsData.map(product => (
-          <ProductInfo key={product.id} product={product} />
-        ))}
-      </div>
-    </div></>
+</>
   );
 };
 

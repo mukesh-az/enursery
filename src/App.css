@@ -47,7 +47,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: auto;
   background-size: 100% 100%;
   background-position: center;
   filter: brightness(0.8);
@@ -56,14 +56,18 @@
 .productsHomeBG{
     background-image: url('/src/assets/bgms.png');
   top: 0;
+    position: absolute;
   left: 0;
   width: 100%;
-  height: 100%;
-  background-size: 100% 100%;
+  height: auto;
   filter: brightness(0.8);
   background-color: rgb(227, 255, 246);
 }
 
+.cartButton{
+  margin-left: 3px;
+  margin-right: 3px;
+}
 .homeContainer{
    background-color:rgba(0,0,0,0.4);
 }

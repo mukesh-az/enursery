@@ -6,6 +6,7 @@ import RootLayout from "./layouts/RootLayout";
 import ProductLayout from "./layouts/ProductLayout";
 import Home from './Pages/Home';
 import Products from './Pages/Products';
+import ShoppingCart from './Pages/ShoppingCart';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
               </Route>
               <Route path="/products" element={<ProductLayout />}>
                 <Route index element={<Products />} />
+                 <Route path="cart" element={<ShoppingCart />} />
               </Route>
             </Routes>
           </div>

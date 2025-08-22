@@ -1,5 +1,37 @@
 import styled from "styled-components"
 
+export const  NavigatorWrapper2 = styled.div`
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  background-color:rgba(156, 148, 187, 0.5);
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 3rem;
+    
+  }
+
+  .nav-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0rem;
+    .menu-btn {
+      display: block;
+
+      @media only screen and (min-width: 768px) {
+        display: none;
+      }
+    }
+
+    .nav-links {
+      display: none;
+    }
+  }    
+`
+
 
 export const  NavigatorWrapper = styled.div`
   position: relative;
@@ -18,7 +50,7 @@ export const  NavigatorWrapper = styled.div`
     display: flex;
     align-items: center;
     gap: 1rem;
-    margin-top: 1rem;
+    margin-top: 0rem;
     .menu-btn {
       display: block;
 

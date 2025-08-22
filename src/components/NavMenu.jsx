@@ -1,9 +1,16 @@
 import { Link, NavLink } from "react-router";
 import { NavigatorWrapper } from "../Style/NavigatorWrapper";
 import Logo from './Logo';
+import { getQuantity} from '../store/CartSlice'
+import { useSelector } from 'react-redux'
+import Badge from 'react-bootstrap/Badge';
+import Cart from '../icons/Cart';
+
 const navLinks = ["Home", "Products"]
 
 const NavMenu = () => {
+const cartQuantity = useSelector(state => getQuantity(state.cart, null));
+
     return (
         <NavigatorWrapper>
             <nav>
@@ -27,8 +34,23 @@ const NavMenu = () => {
                     </ul>
                 </div>
                 <div className="nav-right">
-                  <b>LOGO</b>
-                </div>
+          {cartQuantity > 0 ? ( 
+             <NavLink to="/products/cart">
+            <button 
+            className="bg-transparent">
+             
+              <Cart className="mt-10" />
+              {cartQuantity > 0 && (
+                <Badge bg="danger">{cartQuantity}</Badge>
+              )}
+              </button>
+              </NavLink>
+           ) : ( <button 
+            className="bg-transparent">
+              <Cart  className="mt-10" />
+          </button> )}
+           
+        </div>
             </nav>
         </NavigatorWrapper>
     );

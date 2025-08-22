@@ -33,6 +33,7 @@ const CartSlice = createSlice({
         quantity: action.payload.quantity,
         unitPrice: action.payload.unitPrice,
         title: action.payload.title,
+        image: action.payload.image,
         itemCount: 1
       });
       }

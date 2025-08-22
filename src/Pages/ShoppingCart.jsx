@@ -79,7 +79,7 @@ const ShoppingCart = () => {
                   <td className='text-center' colSpan={6}>
                     <Link to="/products">
                       <Button className='cartButton' variant="outline-primary" size="xxl">
-                        Continue Shopping....
+                        Continue Shopping
                       </Button>
                     </Link>
                     {totalCartValue > 0 && (<>
@@ -94,7 +94,7 @@ const ShoppingCart = () => {
 
                       <Button className='cartButton' variant="outline-success" size="xxl"
                         onClick={() => setModalShow(true)}                    >
-                        Checkout (Comming soon.......)
+                        Checkout (Comming soon)
                       </Button>
                     </>)}
 

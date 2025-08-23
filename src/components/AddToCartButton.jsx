@@ -15,6 +15,7 @@ const AddToCartButton = ({ product }) => {
   return (
 
     <>
+    {count}
       <div className="row">
         <div className='col-4 text-left' >
           <p className="product-price"> {gbpFormatter.format(product.unitPrice)}</p>

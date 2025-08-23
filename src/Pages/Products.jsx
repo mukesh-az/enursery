@@ -41,7 +41,6 @@ const Products = () => {
         }, {}))
 
         setGroupedItems(result);
-        console.log("Grouped Items:", result);
       } else {
 
         const filteredCategory = productsData.filter(
@@ -57,7 +56,6 @@ const Products = () => {
         }, {}))
 
         setGroupedItems(result);
-        console.log("Grouped Items:", result);
 
       }
 

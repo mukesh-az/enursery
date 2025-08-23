@@ -20,13 +20,13 @@ const ShoppingCart = () => {
 
 
   return (
-    <div class="row mt-3" style={{width: '95%'}}>
-      <div class="col-2"></div>
-      <div class="col-8">
+    <div className="row mt-3" style={{width: '95%'}}>
+      <div className="col-2"></div>
+      <div className="col-8">
       <h1>Shopping Cart</h1>
 
-        <div class="table-responsive">
-          <table class="table table-striped 
+        <div className="table-responsive">
+          <table className="table table-striped 
                     table-bordered table-hover">
             <thead>
               <tr>
@@ -112,7 +112,7 @@ const ShoppingCart = () => {
         </div>
 
       </div>
-      <div class="col-2"></div>
+      <div className="col-2"></div>
 
     </div>
   )
